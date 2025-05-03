@@ -65,11 +65,11 @@
                                     <span class="sub-item">Add Vehicle For Booking</span>
                                 </a>
                             </li>
-                            {{-- <li>
-                                <a href="#">
+                            <li>
+                                <a href="{{ route('product-availability-list') }}">
                                     <span class="sub-item">Products Availability</span>
                                 </a>
-                            </li> --}}
+                            </li>
                         </ul>
                     </div>
                 </li>

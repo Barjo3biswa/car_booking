@@ -31,9 +31,16 @@
                             <td>{{ $value->ret_date }}</td>
                             <td>{{ $value->no_of_per }}</td>
                             <td>{{ $value->status }}</td>
-                            <td><a href="#" class="btn btn-primary btn-xs">Confirm</a>
-                                <a href="#" class="btn btn-danger btn-xs">Cancel</a>
-                                <a href="#" class="btn btn-success btn-xs">Completed</a>
+                            <td>
+                                @if($status == 'new')
+                                    <a href="{{ route('admin-confirm',['id'=>Crypt::encrypt($value->id),'status'=>'Confirmed']) }}" class="btn btn-primary btn-xs">Confirm</a>
+                                @endif
+                                @if($status == 'new' || $status == 'confirmed')
+                                <a href="{{ route('admin-confirm',['id'=>Crypt::encrypt($value->id),'status'=>'Rejected']) }}" class="btn btn-danger btn-xs">Reject</a>
+                                @endif
+                                @if($status == 'confirmed')
+                                <a href="{{ route('admin-confirm',['id'=>Crypt::encrypt($value->id),'status'=>'Completed']) }}" class="btn btn-success btn-xs">Completed</a>
+                                @endif
                             </td>
                         </tr>
                     @endforeach

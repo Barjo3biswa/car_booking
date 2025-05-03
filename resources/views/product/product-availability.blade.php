@@ -18,8 +18,9 @@
                 <thead>
                     <tr>
                         <th>SL</th>
-                        <th>Product_Name</th>
-                        <th>Product_Quantity</th>
+                        <th>Product Name</th>
+                        <th>Product Quantity</th>
+                        <th>In Rent</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -28,6 +29,7 @@
                             <td>{{ ++$key }}</td>
                             <td>{{ $value->product_name }}</td>
                             <td>{{ $value->available_product }}</td>
+                            <td>{{ $value->on_rent }}</td>
                             {{-- <td><a href="{{ route('editsales', $value->id) }}">Edit</a></td>
                             <td><a href="{{ route('deletesales', $value->id) }}">Delete</a></td> --}}
                         </tr>

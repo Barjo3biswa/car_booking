@@ -7,7 +7,7 @@
                 <p>Fill the form below to rent your preferred car or bike easily!</p>
             </div>
 
-            <form class="rent-form" method="post" action="{{ route('booking') }}">
+            <form class="rent-form" method="post" action="{{ route('booking',$id) }}">
                 @csrf
                 <div class="form-row">
                     <div class="form-group">

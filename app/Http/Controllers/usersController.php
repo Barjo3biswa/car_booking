@@ -26,14 +26,17 @@ class usersController extends Controller
         // dd("ok");
     }
 
-    public function rentNow(){
-        return view('users_end.pages.book-now');
+    public function rentNow($id){
+        // $id = Crypt::decrypt($id);
+        return view('users_end.pages.book-now',compact('id'));
     }
 
-    public function bookNow(Request $request){
+    public function bookNow(Request $request,$id){
         // dd($request->all());
+        $id = Crypt::decrypt($id);
         $data=[
             'full_name' =>$request->name,
+            'product_id' => $id,
             'user_id' => Auth::user()->id,
             'phone_no' =>$request->phone,
             'pickup_location' =>$request->location,

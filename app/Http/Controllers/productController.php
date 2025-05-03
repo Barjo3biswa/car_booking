@@ -7,6 +7,7 @@ use App\Models\Product;
 use App\Models\productAvailability;
 use App\Models\productCatagory;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Crypt;
 
 class productController extends Controller
 {
@@ -197,8 +198,32 @@ class productController extends Controller
                 }else if($request->status=='all'){
                     $orders = Order::orderBy('id', 'DESC')->get();
                 }
-                return view('product.orders',compact('orders'));
+                $status = $request->status;
+                return view('product.orders',compact('orders','status'));
                 // dd($orders);
+            }
+
+            public function ordersConfirm(Request $request){
+
+                $id = Crypt::decrypt($request->id);
+                if($request->status == 'Confirmed'){
+                    $order = Order::where('id',$id)->first();
+                    $product = Product::where('id',$order->product_id)->first();
+                    if($product->available_product >  $product->on_rent){
+                        $product = Product::where('id',$order->product_id)->update(['on_rent'=>$product->on_rent+1]);
+                    }else{
+                        return redirect()->back()->with('error','Cant place order');
+                    }
+                    Order::where('id',$id)->update(['status'=>$request->status]);
+                }
+                Order::where('id',$id)->update(['status'=>$request->status]);
+                return redirect()->back();
+
+            }
+
+            public function productAvail(){
+                $data =product::get();
+                return view('product.product-availability', compact('data'));
             }
 
 }

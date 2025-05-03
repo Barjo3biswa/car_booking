@@ -94,14 +94,10 @@
                         </div>
                         <div class="input-field">
                             <select name="user_type" class="form-control" required>
-                                <option value="">--Registration Type--
-                                <option>
-                                <option value="rider">Rider
-                                <option>
-                                <option value="owner">Car Owner
-                                <option>
-                                <option value="both">Both
-                                <option>
+                                <option value="">--Registration Type--</option>
+                                <option value="rider">Rider</option>
+                                <option value="owner">Car Owner</option>
+                                <option value="both">Both</option>
                             </select>
                         </div>
                         <div class="input-field">

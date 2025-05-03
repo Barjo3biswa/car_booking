@@ -16,8 +16,8 @@ Route::get('/admin', function () {
 });
 Route::get('/index', [App\Http\Controllers\usersController::class, 'index'])->name('index');
 Route::get('/sub-page/{id}', [App\Http\Controllers\usersController::class, 'subPage'])->name('sub-page');
-Route::get('/rent-now', [App\Http\Controllers\usersController::class, 'rentNow'])->middleware('auth')->name('rent-now');
-Route::post('/booking', [App\Http\Controllers\usersController::class, 'bookNow'])->name('booking');
+Route::get('/rent-now/{id}', [App\Http\Controllers\usersController::class, 'rentNow'])->middleware('auth')->name('rent-now');
+Route::post('/booking/{id}', [App\Http\Controllers\usersController::class, 'bookNow'])->name('booking');
 Route::get('/my-bookings', [App\Http\Controllers\usersController::class, 'myBookings'])->middleware('auth')->name('my-bookings');
 
 
@@ -34,6 +34,9 @@ Route::get('/delete/{id}', [productController::class, 'delete'])->name('delete')
 Route::get('/create-sales-product', [App\Http\Controllers\productController::class, 'ProductSales'])->name('create-sales-product');
 Route::post('/save-sales-product', [App\Http\Controllers\productController::class, 'savesalesproduct'])->name('save-sales-product');
 Route::get('/View', [productController::class, 'ViewList'])->name('product-availability-show');
+
+Route::get('/product-availability-list', [productController::class, 'productAvail'])->name('product-availability-list');
+// product-availability-list
 Route::get('/editsales/{id}', [productController::class, 'editsales'])->name('editsales');
 Route::post('/updatesales/{id}', [productController::class, 'updatesales'])->name('updatesales');
 Route::get('/deletesales/{id}', [productController::class, 'deletesales'])->name('deletesales');
@@ -47,3 +50,5 @@ Route::post('/updatecatagory/{id}', [productController::class, 'updatecatagory']
 Route::get('/deletecatagory/{id}', [productController::class, 'deletecatagory'])->name('deletecatagory');
 
 Route::get('/admin-side-order', [productController::class, 'orders'])->name('admin-side-order');
+
+Route::get('/admin-confirm', [productController::class, 'ordersConfirm'])->name('admin-confirm');
