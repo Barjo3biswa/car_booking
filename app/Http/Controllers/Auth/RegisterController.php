@@ -81,9 +81,11 @@ class RegisterController extends Controller
     protected function redirectTo()
     {
         if (Auth::user()->user_type === 'admin' || Auth::user()->user_type === 'owner') {
-            return redirect()->route('home');
+            // dd("ooppss");
+            return '/home';
         }
-        return redirect()->route('index');
+        // dd("ok");
+        return '/index';
     }
 
 }

@@ -295,7 +295,7 @@
                         <p class="card-text small text-muted">{{$pro->product_description}}</p>
                         <h6 class="fw-bold">{{ $pro->price }}<span class="text-muted">/day</span></h6>
                         <div class="d-grid mt-2">
-                            <a href="{{ route('rent-now') }}" class="btn btn-primary btn-sm">Rent Now</a>
+                            <a href="{{ route('rent-now',Crypt::encrypt($pro->id)) }}" class="btn btn-primary btn-sm">Rent Now</a>
                         </div>
                     </div>
                 </div>
@@ -313,7 +313,7 @@
                         <p class="card-text small text-muted">{{$pro->product_description}}</p>
                         <h6 class="fw-bold">{{ $pro->price }}<span class="text-muted">/day</span></h6>
                         <div class="d-grid mt-2">
-                            <a href="{{ route('rent-now') }}" class="btn btn-primary btn-sm">Rent Now</a>
+                            <a href="{{ route('rent-now',Crypt::encrypt($pro->id)) }}" class="btn btn-primary btn-sm">Rent Now</a>
                         </div>
                     </div>
                 </div>

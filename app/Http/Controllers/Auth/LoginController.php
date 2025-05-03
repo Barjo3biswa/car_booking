@@ -43,10 +43,10 @@ class LoginController extends Controller
     {
         if (Auth::user()->user_type === 'admin' || Auth::user()->user_type === 'owner') {
             // dd("ooppss");
-            return route('home');
+            return '/home';
         }
         // dd("ok");
-        return route('index');
+        return '/index';
     }
 
 }
