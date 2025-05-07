@@ -13,15 +13,25 @@ class usersController extends Controller
 {
     public function index(){
         // dd("ok");
-        $productsi = product::get()->take(4);
-        $productsii = product::get()->take(4);
+        // $productsi = product::get()->take(4);
+        // $productsii = product::get()->take(4);
+        $productsi = product::where('category_id',1)
+                    ->whereColumn('available_product', '>', 'on_rent')
+                    ->get();
+        
+        $productsii = product::where('category_id',2)
+                    ->whereColumn('available_product', '>', 'on_rent')
+                    ->get();
         // dd($productsi);
         return view('users_end.pages.index',compact('productsi','productsii'));
     }
 
     public function subPage($id){
         $id = Crypt::decrypt($id);
-        $products = product::where('category_id',$id)->get();
+        $products = product::where('category_id', $id)
+                    ->whereColumn('available_product', '>', 'on_rent')
+                    ->get();
+
         return view('users_end.pages.sub-page',compact('products'));
         // dd("ok");
     }
@@ -32,8 +42,9 @@ class usersController extends Controller
     }
 
     public function bookNow(Request $request,$id){
-        // dd($request->all());
+       
         $id = Crypt::decrypt($id);
+        
         $data=[
             'full_name' =>$request->name,
             'product_id' => $id,
@@ -47,7 +58,7 @@ class usersController extends Controller
             'return_status' =>'initiated',
             'status'=>'booked'
         ];
-
+        // dd($data);
         order::create($data);
         return redirect()->route('my-bookings');
     }

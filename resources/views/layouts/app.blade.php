@@ -3,7 +3,7 @@
 
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>Kaiadmin - Bootstrap 5 Admin Dashboard</title>
+    <title>Admin Dashboard</title>
     <meta content="width=device-width, initial-scale=1.0, shrink-to-fit=no" name="viewport" />
     <link rel="icon" href="{{ asset('assets') }}/img/kaiadmin/favicon.ico" type="image/x-icon" />
 
@@ -305,7 +305,13 @@
                                     </div>
                                     <span class="profile-username">
                                         <span class="op-7"></span>
-                                        <span class="fw-bold">Admin</span>
+                                        <span class="fw-bold">
+                                            @if(Auth::User()->name=='Admin')
+                                                {{Auth::User()->name}}
+                                            @else
+                                                {{Auth::User()->name}}
+                                            @endif
+                                        </span>
                                     </span>
                                 </a>
                                 <ul class="dropdown-menu dropdown-user animated fadeIn">
@@ -341,27 +347,9 @@
 
             <footer class="footer">
                 <div class="container-fluid d-flex justify-content-between">
-                    {{-- <nav class="pull-left">
-                        <ul class="nav">
-                            <li class="nav-item">
-                                <a class="nav-link" href="http://www.themekita.com">
-                                    ThemeKita
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#"> Help </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#"> Licenses </a>
-                            </li>
-                        </ul>
-                    </nav>
-                    <div class="copyright">
-                        2024, made with <i class="fa fa-heart heart text-danger"></i> by
-                        <a href="http://www.themekita.com">ThemeKita</a>
-                    </div> --}}
+                   
                     <div>
-                        Dhemaji Engineering College
+                        Assam Engineering Institute
                     </div>
                 </div>
             </footer>

@@ -122,7 +122,7 @@ class productController extends Controller
             {
                 $data = productAvailability::get(); //qry
                 // dd($data[0]->productAvailability_name);
-
+                // dd($data);
                 return view('product.product-availability-show', compact('data'));
 
             }
@@ -188,13 +188,15 @@ class productController extends Controller
             }
 
             public function orders(Request $request){
-
+                
                 if($request->status=='new'){
                     $orders = Order::where('status','booked')->orderBy('id', 'DESC')->get();
                 }else if($request->status=='confirmed'){
                     $orders = Order::where('status','confirmed')->orderBy('id', 'DESC')->get();
                 }else if($request->status=='completed'){
                     $orders = Order::where('status','completed')->orderBy('id', 'DESC')->get();
+                }else if($request->status=='Delevered'){
+                    $orders = Order::where('status','Delevered')->orderBy('id', 'DESC')->get();
                 }else if($request->status=='all'){
                     $orders = Order::orderBy('id', 'DESC')->get();
                 }
@@ -209,8 +211,20 @@ class productController extends Controller
                 if($request->status == 'Confirmed'){
                     $order = Order::where('id',$id)->first();
                     $product = Product::where('id',$order->product_id)->first();
+                    // dd($order);
                     if($product->available_product >  $product->on_rent){
                         $product = Product::where('id',$order->product_id)->update(['on_rent'=>$product->on_rent+1]);
+                    }else{
+                        return redirect()->back()->with('error','Cant place order');
+                    }
+                    Order::where('id',$id)->update(['status'=>$request->status]);
+                }
+
+                if($request->status == 'completed'){
+                    $order = Order::where('id',$id)->first();
+                    $product = Product::where('id',$order->product_id)->first();
+                    if($product->available_product >  $product->on_rent){
+                        $product = Product::where('id',$order->product_id)->update(['on_rent'=>$product->on_rent-1]);
                     }else{
                         return redirect()->back()->with('error','Cant place order');
                     }

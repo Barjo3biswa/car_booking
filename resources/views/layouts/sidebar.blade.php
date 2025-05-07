@@ -5,7 +5,14 @@
             <a href="index.html" class="logo">
                 {{-- <img src="{{ asset('assets') }}/img/kaiadmin/logo_light.svg" alt="navbar brand" class="navbar-brand"
                     height="20" /> --}}
-                    <h4 style="color: lemonchiffon;">E-commerce</h6>
+                    <h4 style="color: lemonchiffon;">Car-Booking 
+
+                    @if(Auth::User()->user_type=='admin')
+                        (Admin)
+                    @else
+                        (Vehicle Owner)
+                    @endif
+                    </h6>
             </a>
             <div class="nav-toggle">
                 <button class="btn btn-toggle toggle-sidebar">
@@ -93,7 +100,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="{{ route('admin-side-order',['status'=>'completed']) }}">
+                                <a href="{{ route('admin-side-order',['status'=>'Delevered']) }}">
                                     <span class="sub-item">Delivered</span>
                                 </a>
                             </li>
@@ -105,7 +112,7 @@
                         </ul>
                     </div>
                 </li>
-
+                @if (Auth::user()->user_type == 'admin')
                 <li class="nav-item">
                     <a data-bs-toggle="collapse" href="#users">
                         <i class="fas fa-layer-group"></i>
@@ -127,6 +134,7 @@
                         </ul>
                     </div>
                 </li>
+                @endif
             </ul>
         </div>
     </div>

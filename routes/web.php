@@ -52,3 +52,4 @@ Route::get('/deletecatagory/{id}', [productController::class, 'deletecatagory'])
 Route::get('/admin-side-order', [productController::class, 'orders'])->name('admin-side-order');
 
 Route::get('/admin-confirm', [productController::class, 'ordersConfirm'])->name('admin-confirm');
+

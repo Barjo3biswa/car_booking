@@ -39,7 +39,11 @@
                                 <a href="{{ route('admin-confirm',['id'=>Crypt::encrypt($value->id),'status'=>'Rejected']) }}" class="btn btn-danger btn-xs">Reject</a>
                                 @endif
                                 @if($status == 'confirmed')
-                                <a href="{{ route('admin-confirm',['id'=>Crypt::encrypt($value->id),'status'=>'Completed']) }}" class="btn btn-success btn-xs">Completed</a>
+                                <a href="{{ route('admin-confirm',['id'=>Crypt::encrypt($value->id),'status'=>'Delevered']) }}" class="btn btn-success btn-xs">Delevered</a>
+                                @endif
+
+                                @if($status == 'Delevered')
+                                <a href="{{ route('admin-confirm',['id'=>Crypt::encrypt($value->id),'status'=>'completed']) }}" class="btn btn-success btn-xs">Completed</a>
                                 @endif
                             </td>
                         </tr>

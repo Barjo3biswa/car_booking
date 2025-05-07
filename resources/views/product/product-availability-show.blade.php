@@ -27,7 +27,7 @@
                         <tr>
                             <td>{{ ++$key }}</td>
                             <td>{{ $value->product_name }}</td>
-                            <td>{{ $value->available_product }}</td>
+                            <td>{{ $value->quantity }}</td>
                             {{-- <td><a href="{{ route('editsales', $value->id) }}">Edit</a></td>
                             <td><a href="{{ route('deletesales', $value->id) }}">Delete</a></td> --}}
                         </tr>
